@@ -21,7 +21,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex overflow-hidden">
             <div className="flex-shrink-0 flex items-center">
-              <h1 className="text-xl font-bold text-primary-600 tracking-tight">PG Manager</h1>
+              <h1 className="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-indigo-600 tracking-tight">Radhe Krishn Niwas</h1>
             </div>
             <div className="hidden md:-my-px md:ml-8 md:flex md:space-x-2 lg:space-x-4">
               {navItems.map((item) => (
