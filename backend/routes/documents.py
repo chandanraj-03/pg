@@ -1,7 +1,8 @@
 from fastapi import APIRouter, HTTPException, status, UploadFile, File, Form
 from fastapi.responses import StreamingResponse
 from models import DocumentModel
-from database import documents_collection, students_collection, fs
+from database import documents_collection, students_collection, database
+from motor.motor_asyncio import AsyncIOMotorGridFSBucket
 from bson import ObjectId
 from datetime import datetime
 from PIL import Image
@@ -53,6 +54,7 @@ async def add_document(
         filename = file.filename
 
     # Upload to GridFS
+    fs = AsyncIOMotorGridFSBucket(database)
     grid_in = fs.open_upload_stream(
         filename,
         metadata={"contentType": content_type, "studentId": studentId}
@@ -81,6 +83,7 @@ async def get_file(file_id: str):
         raise HTTPException(status_code=400, detail="Invalid File ID")
     
     try:
+        fs = AsyncIOMotorGridFSBucket(database)
         grid_out = await fs.open_download_stream(ObjectId(file_id))
     except Exception:
         raise HTTPException(status_code=404, detail="File not found")

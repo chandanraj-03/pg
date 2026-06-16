@@ -9,9 +9,6 @@ MONGODB_URL = os.getenv("MONGODB_URL")
 client = AsyncIOMotorClient(MONGODB_URL)
 database = client.pg_management
 
-# GridFS Bucket
-fs = AsyncIOMotorGridFSBucket(database)
-
 # Collections
 users_collection = database.get_collection("users")
 students_collection = database.get_collection("students")
