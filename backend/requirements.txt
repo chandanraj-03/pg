@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+motor
+pymongo
+pydantic
+pydantic-settings
+bcrypt
+python-jose[cryptography]
+python-multipart
+python-dotenv
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+Pillow
